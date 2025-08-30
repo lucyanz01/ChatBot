@@ -2,6 +2,9 @@ import random
 
 class ChatBot:
     def __init__(self):
+
+     # Listas para las interacciones y funciones
+
         self.saludos = ["Hola", "saludo", "ola", "buenas", "holaaa"]
         self.despedidas = ["chau", "adios", "nos vemos", "gracias", "bye"]
         self.formas_desp = ["¡Nos vemos!", "Gracias por usar ChatBot", "¡Adiós!", "Háblame cuando necesites algo."]
@@ -72,7 +75,7 @@ class ChatBot:
          else:
               return "¡Perdiste!"
          
-    # Respuestas y mensajes
+    # Manejo de respuestas y mensajes
                 
     def responder(self, mensaje):
             mensaje = mensaje.lower()
@@ -95,6 +98,8 @@ class ChatBot:
             if respuesta:
                 return respuesta
             return "No entendí, ¿podrías repetir?"
+    
+# Función principal y ejecución
         
 def main():
         bot = ChatBot()
