@@ -6,7 +6,7 @@ bot = ChatBot()
 
 @app.route("/home", methods=["GET"])
 def home():
-    return "Servidor Flask funcionando"
+    return "Inicio ChatBot"
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -14,6 +14,10 @@ def chat():
     mensaje = data.get("mensaje", " ")
     respuesta = bot.responder(mensaje)
     return jsonify ({"respuesta": respuesta})
+
+@app.route("/historial", methods=["GET"])
+def historial():
+    return jsonify(bot.historial)
 
 if __name__ == "__main__":
     app.run(debug=True)
