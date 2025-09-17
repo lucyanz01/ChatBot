@@ -19,6 +19,7 @@ class ChatBot:
              "papel" : "piedra",
              "tijera" : "papel"
         }
+        self.historial = []
 
     # Funciones de interaccióm
 
@@ -78,26 +79,28 @@ class ChatBot:
     # Manejo de respuestas y mensajes
                 
     def responder(self, mensaje):
-            mensaje = mensaje.lower()
+     mensaje = mensaje.lower()
 
-            if self.jugando:
-                 cancelar = self.cancelar(mensaje)
-                 if cancelar:
-                       return cancelar
-                 return self.res_juego(mensaje)
+     respuesta = None
 
-            respuesta = self.saludar(mensaje)
-            if respuesta:
-                return respuesta
-            
-            respuesta = self.jugar(mensaje)
-            if respuesta:
-                 return respuesta
-            
-            respuesta = self.despedir(mensaje)
-            if respuesta:
-                return respuesta
-            return "No entendí, ¿podrías repetir?"
+     if self.jugando:
+          cancelar = self.cancelar(mensaje)
+          if cancelar:
+               respuesta = cancelar
+          else:
+               respuesta = self.res_juego(mensaje)
+     else:
+          respuesta = self.saludar(mensaje)
+          if not respuesta:
+               respuesta = self.jugar(mensaje)
+          if not respuesta:
+               respuesta = self.despedir(mensaje)
+          if not respuesta:
+               respuesta = "No entendí, ¿podrías repetir?"
+
+     self.historial.append({"mensaje": mensaje, "respuesta": respuesta})
+
+     return respuesta
     
 # Función principal y ejecución
         
